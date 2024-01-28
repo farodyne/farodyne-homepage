@@ -1,0 +1,13 @@
+{
+    "name": "farodyne-common",
+    "version": "1.0.0",
+    "author": "Federico Engler",
+    "description": "Common code for the Farodyne homepage.",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+        "build": "npx rimraf ./dist && tsc && vite build"
+    },
+    "keywords": [],
+    "license": "ISC"
+}
