@@ -1,0 +1,13 @@
+{
+    "name": "farodyne-backend",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "build": "tsc",
+        "dev": "tsc-watch --onSuccess \"node dist/index.js\""
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+}
