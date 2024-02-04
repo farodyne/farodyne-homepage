@@ -1,3 +1,6 @@
+/**
+ * Utility class used to read in the environment variables used by this application.
+ */
 import { EnvironmentParameters } from '@/types';
 
 export class Environment implements EnvironmentParameters {
@@ -9,7 +12,5 @@ export class Environment implements EnvironmentParameters {
         this.databaseUser = process.env.FARODYNE_DB_USERNAME;
         this.databasePassword = process.env.FARODYNE_DB_PASSWORD;
         this.databaseHost = process.env.FARODYNE_DB_HOST;
-
-        console.log('AAAAAAAAAAAA', this);
     }
 }
