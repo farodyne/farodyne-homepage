@@ -23,9 +23,9 @@ export class DatabaseClient {
         try {
             this.client = new MongoClient(uri);
             this.client.connect();
-            console.info('Successfully connected to the database.');
+            console.info('Successfully connected to the Farodyne database.');
         } catch (error) {
-            console.error('Failed to connect to database.', error);
+            console.error('Failed to connect to the Farodyne database.', error);
         }
     }
 

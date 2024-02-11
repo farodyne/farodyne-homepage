@@ -1,6 +1,10 @@
 /**
  * Entry point for the backend application.
  */
-import { DatabaseClient, EnvironmentParameters } from './utils';
+import { DatabaseClient, EnvironmentParameters, RestApi } from './utils';
 
-const databaseClient = new DatabaseClient(new EnvironmentParameters());
+// Read the environment parameters and start the required services.
+const environmentParameters = new EnvironmentParameters();
+const databaseClient = new DatabaseClient(environmentParameters);
+const restApi = new RestApi(databaseClient, environmentParameters);
+restApi.start();
