@@ -1,7 +1,6 @@
-import { DatabaseClient, Environment } from './utils';
+/**
+ * Entry point for the backend application.
+ */
+import { DatabaseClient, EnvironmentParameters } from './utils';
 
-console.log('Hello world!');
-
-const kaka = new Environment();
-
-const laka = new DatabaseClient(new Environment());
+const databaseClient = new DatabaseClient(new EnvironmentParameters());

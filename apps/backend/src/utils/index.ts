@@ -2,4 +2,4 @@
  * Aggregate exports file.
  */
 export * from './database-client';
-export * from './environment';
+export * from './environment-parameters';

@@ -1,14 +1,24 @@
 import { MongoClient } from 'mongodb';
-import { EnvironmentParameters } from '@/types';
+import { EnvironmentParameters } from '@/utils';
 
 export class DatabaseClient {
     client!: MongoClient;
+    parameters: EnvironmentParameters;
 
     /**
-     * Constructs an instance of a MongoDB client.
+     * Constructs an instance of this database client.
      */
-    constructor({ databaseUser, databasePassword, databaseHost }: EnvironmentParameters) {
-        const uri = `mongodb+srv://${databaseUser}:${databasePassword}@${databaseHost}/?retryWrites=true&w=majority`;
+    constructor(parameters: EnvironmentParameters) {
+        this.parameters = parameters;
+        this.connect(parameters);
+    }
+
+    /**
+     * Connects to the database.
+     */
+    connect(parameters: EnvironmentParameters) {
+        const { databaseUser, databasePassword, databasePort } = parameters;
+        const uri = `mongodb://${databaseUser}:${databasePassword}@localhost:${databasePort}`;
 
         try {
             this.client = new MongoClient(uri);
@@ -17,5 +27,13 @@ export class DatabaseClient {
         } catch (error) {
             console.error('Failed to connect to database.', error);
         }
+    }
+
+    async lala() {
+        const section = await this.client.db('farodyne').collection('albums').findOne({ id: 'carousel-images' });
+
+        console.log('AAAAAAAAAAAAAAAAD', section);
+
+        return section;
     }
 }
