@@ -5,6 +5,7 @@ import cors from 'cors';
 import express from 'express';
 import requestIp from 'request-ip';
 import bodyParser from 'body-parser';
+import { Album } from 'farodyne-common';
 import { DatabaseClient, EnvironmentParameters } from '@/utils';
 
 export class RestApi {
@@ -48,14 +49,13 @@ export class RestApi {
             params: { id }
         } = req;
 
-        console.info(`${requestIp.getClientIp(req)} - Getting album ${id}`);
+        console.info(`Request from ${requestIp.getClientIp(req)} - Getting album "${id}".`);
 
-        const cursor = await this.databaseClient.getAlbum(id);
+        const cursor: any = await this.databaseClient.getAlbum(id);
 
         if (cursor) {
-            //res.json(new Album(cursor));
             console.log('AAAAAAAAAA', cursor);
-            res.json({ message: 'lala' });
+            res.json(new Album(cursor));
         } else {
             const error = `No album with id: ${id}.`;
             console.error({ error });

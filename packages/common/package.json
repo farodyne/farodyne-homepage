@@ -3,8 +3,16 @@
     "version": "1.0.0",
     "author": "Federico Engler",
     "description": "Common code for the Farodyne homepage.",
-    "main": "index.js",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
     "type": "module",
+    "exports": {
+        ".": "./dist/index.js",
+        "./index.d.ts": "./dist/index.d.ts"
+    },
+    "files": [
+        "dist"
+    ],
     "scripts": {
         "build": "npx rimraf ./dist && tsc && vite build"
     },

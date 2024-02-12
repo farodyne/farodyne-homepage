@@ -2,8 +2,7 @@
 
 .DEFAULT_GOAL := help
 
-PROJECT_NAME := Targets for the convhub-common package.
-PACKAGE_MANAGER := npm
+PROJECT_NAME := Targets for the Farodyne common package.
 
 .PHONY: help
 help:
@@ -15,7 +14,7 @@ help:
 
 
 deps: ## Installs the required project dependencies.
-	${PACKAGE_MANAGER} install
+	pnpn install
 
 build: ## Builds the convhub-common package.
-	${PACKAGE_MANAGER} run build
+	pnpm run build
