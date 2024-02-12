@@ -15,6 +15,46 @@
 
 <template>
     <nav>
-        <router-link v-for="link in navbarLinks" :to="`/${link}`">{{ link }}</router-link>
+        <div class="name ephesis-regular">Federico Engler</div>
+        <div class="links">
+            <router-link v-for="link in navbarLinks" :to="`/${link}`">{{ link }}</router-link>
+        </div>
     </nav>
 </template>
+
+<style lang="scss" scoped>
+    @import '@/styles/vars.scss';
+
+    nav {
+        align-items: center;
+        display: flex;
+        font-size: $font-size-desktop;
+        height: $navbar-height;
+        justify-content: space-between;
+
+        .name {
+            color: #c5c5c5;
+            font-family: $logo-font;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 5rem;
+            margin-left: 3rem;
+        }
+
+        .links {
+            display: flex;
+
+            a {
+                color: #c5c5c5;
+                font-family: $menu-font;
+                font-size: 3rem;
+                margin: 0 3rem;
+                text-decoration: none;
+
+                &::first-letter {
+                    text-transform: uppercase;
+                }
+            }
+        }
+    }
+</style>
