@@ -39,7 +39,7 @@
         justify-content: space-between;
 
         .name {
-            color: #c5c5c5;
+            color: #b5b5b5;
             font-family: $handwriting-font;
             font-size: 5rem;
             margin-left: 3rem;
@@ -52,7 +52,7 @@
                 color: #c5c5c5;
                 font-family: $menu-font;
                 font-size: 3rem;
-                margin: 0 3rem;
+                margin: 0 4rem;
                 text-decoration: none;
                 transition-duration: $transition-duration;
 
