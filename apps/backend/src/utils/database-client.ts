@@ -29,6 +29,14 @@ export class DatabaseClient {
         }
     }
 
+    /**
+     * Returns the album with the provided identifier.
+     */
+    async getAlbum(id: string) {
+        const { databaseName } = this.parameters;
+        return await this.client.db(databaseName).collection('albums').findOne({ id });
+    }
+
     async lala() {
         const section = await this.client.db('farodyne').collection('albums').findOne({ id: 'carousel-images' });
 

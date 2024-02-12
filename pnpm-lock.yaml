@@ -32,6 +32,9 @@ importers:
       '@types/express':
         specifier: ^4.17.21
         version: 4.17.21
+      '@types/request-ip':
+        specifier: ^0.0.41
+        version: 0.0.41
       body-parser:
         specifier: ^1.20.2
         version: 1.20.2
@@ -44,6 +47,9 @@ importers:
       mongodb:
         specifier: ^6.3.0
         version: 6.3.0
+      request-ip:
+        specifier: ^3.3.0
+        version: 3.3.0
 
   packages/common: {}
 
@@ -430,6 +436,12 @@ packages:
 
   /@types/range-parser@1.2.7:
     resolution: {integrity: sha512-hKormJbkJqzQGhziax5PItDUTMAM9uE2XXQmM37dyd4hVM+5aVl7oVxMVUiVQn2oCQFN/LKCZdvSM0pFRqbSmQ==}
+    dev: false
+
+  /@types/request-ip@0.0.41:
+    resolution: {integrity: sha512-Qzz0PM2nSZej4lsLzzNfADIORZhhxO7PED0fXpg4FjXiHuJ/lMyUg+YFF5q8x9HPZH3Gl6N+NOM8QZjItNgGKg==}
+    dependencies:
+      '@types/node': 20.11.9
     dev: false
 
   /@types/send@0.17.4:
@@ -1021,6 +1033,10 @@ packages:
       http-errors: 2.0.0
       iconv-lite: 0.4.24
       unpipe: 1.0.0
+    dev: false
+
+  /request-ip@3.3.0:
+    resolution: {integrity: sha512-cA6Xh6e0fDBBBwH77SLJaJPBmD3nWVAcF9/XAcsrIHdjhFzFiB5aNQFytdjCGPezU3ROwrR11IddKAM08vohxA==}
     dev: false
 
   /rollup@4.9.6:
