@@ -25,8 +25,14 @@
 <style lang="scss" scoped>
     @import '@/styles/vars.scss';
 
+    $navlink-color: #7ba4c6;
+    $navlink-active-color: #52c5e1;
+    $navlink-hover-color: #a6c4db;
+    $transition-duration: 0.4s;
+
     nav {
         align-items: center;
+
         display: flex;
         font-size: $font-size-desktop;
         height: $navbar-height;
@@ -34,9 +40,7 @@
 
         .name {
             color: #c5c5c5;
-            font-family: $logo-font;
-            font-weight: 400;
-            font-style: normal;
+            font-family: $handwriting-font;
             font-size: 5rem;
             margin-left: 3rem;
         }
@@ -50,10 +54,21 @@
                 font-size: 3rem;
                 margin: 0 3rem;
                 text-decoration: none;
+                transition-duration: $transition-duration;
+
+                &:hover {
+                    color: $navlink-hover-color;
+                    @include blurry-text-shadow($navlink-color);
+                }
 
                 &::first-letter {
                     text-transform: uppercase;
                 }
+            }
+
+            .router-link-active {
+                color: $navlink-active-color;
+                @include blurry-text-shadow(#7ba4c6);
             }
         }
     }

@@ -1,10 +1,15 @@
 // Colors.
-$primary-background-color: #50505a;
+$primary-background-color: #252a30;
 
 // Sizes and dimensions.
 $navbar-height: 9rem;
 
 // Font styles.
-$logo-font: 'Great Vibes', cursive;
+$handwriting-font: 'Great Vibes', cursive;
 $menu-font: 'Abel', sans-serif;
 $font-size-desktop: 2.6rem;
+
+// Mixins.
+@mixin blurry-text-shadow($color) {
+    text-shadow: 0 0 0 $color, 0 0 1rem $color;
+}
