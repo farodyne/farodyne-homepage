@@ -1,12 +1,11 @@
 <script lang="ts">
     /**
-     * Component that renders the home icon.
+     * Component used to render the home icon.
      */
     import { Component, Vue, toNative } from 'vue-facing-decorator';
 
     @Component({ name: 'fd-home-icon' })
     class HomeIcon extends Vue {}
-
     export default toNative(HomeIcon);
 </script>
 

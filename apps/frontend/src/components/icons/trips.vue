@@ -1,12 +1,11 @@
 <script lang="ts">
     /**
-     * Component that renders the trips icon.
+     * Component used to render the trips icon.
      */
     import { Component, Vue, toNative } from 'vue-facing-decorator';
 
     @Component({ name: 'fd-trips-icon' })
     class TripsIcon extends Vue {}
-
     export default toNative(TripsIcon);
 </script>
 
