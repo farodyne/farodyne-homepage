@@ -6,11 +6,27 @@
      * goes, you only get one chance to provide a nice first impression.
      */
     import { Component, Vue, toNative } from 'vue-facing-decorator';
-    // import { BackendApi, Utils, settings } from '@/utils';
+    import { BackendApi } from '@/utils';
     // import { AlbumImage } from '@/types';
 
     @Component({ name: 'fd-frontpage-carousel' })
-    class FrontpageCarousel extends Vue {}
+    class FrontpageCarousel extends Vue {
+        // Component creation hook.
+        created() {
+            this.loadCarouselImages();
+        }
+
+        // Loads the frontpage images and starts the carousel.
+        async loadCarouselImages() {
+            try {
+                const album = await new BackendApi().getFrontpageImages();
+                console.log('AAAAAA', album);
+                // await this.preloadImages(album);
+            } catch (error) {
+                console.error('Failed to get frontpage images from server.');
+            }
+        }
+    }
 
     export default toNative(FrontpageCarousel);
 </script>
@@ -18,7 +34,7 @@
 <template>
     <div id="carousel-container">
         <div class="gradient" />
-        <img src="https://farodyne.com/media/frontpage/frontpage-1.webp" />
+        <img src="https://farodyne.com/media/frontpage/frontpage-3.webp" />
     </div>
 </template>
 
@@ -37,7 +53,7 @@
         .gradient {
             background-image: linear-gradient(to top, $primary-background-color, rgba(0, 0, 0, 0));
             position: absolute;
-            height: 20%;
+            height: 25%;
             bottom: 0;
             width: 100%;
             z-index: 3;

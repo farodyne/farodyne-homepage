@@ -41,8 +41,6 @@ export class RestApi {
 
     /**
      * Method for retrieving an individual photo album.
-     * @param {Object} req - An Express request object.
-     * @param {Object} res - An Express return object.
      */
     async getAlbum(req: express.Request, res: express.Response) {
         const {
