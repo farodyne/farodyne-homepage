@@ -8,6 +8,7 @@
     @Component({ name: 'fd-navbar' })
     class Navbar extends Vue {
         navbarLinks = [Routes.home, Routes.trips, Routes.fantasy, Routes.misc];
+        Routes = Routes;
     }
 
     export default toNative(Navbar);
@@ -18,9 +19,21 @@
         <div class="gradient"></div>
     </div>
     <nav>
-        <div class="name">Federico Engler</div>
+        <div class="logo">Federico Engler</div>
         <div class="links">
-            <router-link v-for="link in navbarLinks" :to="`/${link}`">{{ link }}</router-link>
+            <router-link v-for="link in navbarLinks" :to="`/${link}`">
+                <div class="link">
+                    <div class="icon">
+                        <fd-home-icon v-if="link === Routes.home" />
+                        <fd-trips-icon v-if="link === Routes.trips" />
+                        <fd-fantasy-icon v-if="link === Routes.fantasy" />
+                        <fd-misc-icon v-if="link === Routes.misc" />
+                    </div>
+                    <div class="text">
+                        {{ link }}
+                    </div>
+                </div>
+            </router-link>
         </div>
     </nav>
 </template>
@@ -31,7 +44,7 @@
     $navlink-color: #7ba4c6;
     $navlink-active-color: #52c5e1;
     $navlink-hover-color: #a6c4db;
-    $transition-duration: 0.4s;
+    $transition-duration: 0.3s;
 
     #navbar-backdrop {
         background-color: $primary-background-color;
@@ -62,7 +75,7 @@
         width: 100%;
         z-index: 10;
 
-        .name {
+        .logo {
             color: #b5b5b5;
             font-family: $handwriting-font;
             font-size: 4rem;
@@ -72,21 +85,34 @@
         .links {
             display: flex;
 
+            .link {
+                align-items: center;
+                display: flex;
+
+                .icon {
+                    height: 2.6rem;
+                    margin: 0.8rem;
+                    width: 2.6rem;
+                }
+
+                .text {
+                    &::first-letter {
+                        text-transform: uppercase;
+                    }
+                }
+            }
+
             a {
                 color: #c5c5c5;
                 font-family: $menu-font;
                 font-size: $navbar-font-size;
-                margin: 0 4rem;
+                margin: 0 3rem;
                 text-decoration: none;
                 transition-duration: $transition-duration;
 
                 &:hover {
                     color: $navlink-hover-color;
                     @include blurry-text-shadow($navlink-color);
-                }
-
-                &::first-letter {
-                    text-transform: uppercase;
                 }
             }
 
