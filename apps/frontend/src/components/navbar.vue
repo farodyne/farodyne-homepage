@@ -59,7 +59,7 @@
             background-image: linear-gradient(to bottom, rgba(255, 0, 0, 0), $primary-background-color);
             filter: brightness(60%);
             position: absolute;
-            height: 50%;
+            height: 70%;
             bottom: 0;
             width: 100%;
         }
