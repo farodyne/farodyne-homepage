@@ -29,7 +29,7 @@
         position: relative;
 
         img {
-            filter: sepia(20%);
+            filter: sepia(10%);
             width: 100%;
         }
 

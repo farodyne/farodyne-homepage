@@ -35,7 +35,7 @@
 
     #navbar-backdrop {
         background-color: $primary-background-color;
-        filter: opacity(75%);
+        filter: opacity(80%);
         height: $navbar-height;
         position: fixed;
         top: 0;
@@ -65,7 +65,7 @@
         .name {
             color: #b5b5b5;
             font-family: $handwriting-font;
-            font-size: 5rem;
+            font-size: 4rem;
             margin-left: 3rem;
         }
 
