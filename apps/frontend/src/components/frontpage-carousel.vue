@@ -17,6 +17,7 @@
 
 <template>
     <div id="carousel-container">
+        <div class="gradient" />
         <img src="https://farodyne.com/media/frontpage/frontpage-1.webp" />
     </div>
 </template>
@@ -25,15 +26,20 @@
     @import '@/styles/vars.scss';
 
     #carousel-container {
-        // width: 100%;
-        @include box-shadow(0px 0px 20px 0px $shadow-color);
+        position: relative;
 
         img {
-            //border-top: 2px solid #b5b5b5;
-            // border-bottom: 2px solid #b5b5b5;
-            box-sizing: border-box;
             filter: sepia(20%);
             width: 100%;
+        }
+
+        .gradient {
+            background-image: linear-gradient(to top, $primary-background-color, rgba(0, 0, 0, 0));
+            position: absolute;
+            height: 20%;
+            bottom: 0;
+            width: 100%;
+            z-index: 3;
         }
     }
 </style>
