@@ -1,1 +1,3 @@
-<template>HOME</template>
+<template>
+    <fd-frontpage-carousel />
+</template>

@@ -14,8 +14,11 @@
 </script>
 
 <template>
+    <div id="navbar-backdrop">
+        <div class="gradient"></div>
+    </div>
     <nav>
-        <div class="name ephesis-regular">Federico Engler</div>
+        <div class="name">Federico Engler</div>
         <div class="links">
             <router-link v-for="link in navbarLinks" :to="`/${link}`">{{ link }}</router-link>
         </div>
@@ -30,13 +33,34 @@
     $navlink-hover-color: #a6c4db;
     $transition-duration: 0.4s;
 
+    #navbar-backdrop {
+        background-color: $primary-background-color;
+        filter: opacity(75%);
+        height: $navbar-height;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 5;
+
+        .gradient {
+            background-image: linear-gradient(to top, rgba(255, 0, 0, 0), $primary-background-color);
+            filter: brightness(30%);
+            position: absolute;
+            height: 50%;
+            top: 0;
+            width: 100%;
+        }
+    }
+
     nav {
         align-items: center;
-
         display: flex;
-        font-size: $font-size-desktop;
         height: $navbar-height;
         justify-content: space-between;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 10;
 
         .name {
             color: #b5b5b5;
@@ -51,7 +75,7 @@
             a {
                 color: #c5c5c5;
                 font-family: $menu-font;
-                font-size: 3rem;
+                font-size: $navbar-font-size;
                 margin: 0 4rem;
                 text-decoration: none;
                 transition-duration: $transition-duration;
