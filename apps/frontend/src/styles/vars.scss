@@ -2,14 +2,14 @@
 $primary-background-color: #252a30;
 $shadow-color: #111;
 
-// Sizes and dimensions.
-$navbar-height: 7rem;
+// Navbar styles.
+$navbar-height: 6rem;
+$navbar-font-size: 2.2rem;
 
 // Font styles.
 $handwriting-font: 'Great Vibes', cursive;
 $menu-font: 'Abel', sans-serif;
 $font-size-desktop: 2.6rem;
-$navbar-font-size: 2.8rem;
 
 // Mixins.
 @mixin blurry-text-shadow($color) {

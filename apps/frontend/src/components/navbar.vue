@@ -56,11 +56,11 @@
         z-index: 5;
 
         .gradient {
-            background-image: linear-gradient(to top, rgba(255, 0, 0, 0), $primary-background-color);
-            filter: brightness(30%);
+            background-image: linear-gradient(to bottom, rgba(255, 0, 0, 0), $primary-background-color);
+            filter: brightness(60%);
             position: absolute;
             height: 50%;
-            top: 0;
+            bottom: 0;
             width: 100%;
         }
     }
@@ -91,7 +91,7 @@
 
                 .icon {
                     height: 2.6rem;
-                    margin: 0.8rem;
+                    margin: 0.6rem;
                     width: 2.6rem;
                 }
 
@@ -106,7 +106,7 @@
                 color: #c5c5c5;
                 font-family: $menu-font;
                 font-size: $navbar-font-size;
-                margin: 0 3rem;
+                margin: 0 2rem;
                 text-decoration: none;
                 transition-duration: $transition-duration;
 

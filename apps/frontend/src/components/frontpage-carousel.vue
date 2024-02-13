@@ -26,6 +26,7 @@
     @import '@/styles/vars.scss';
 
     #carousel-container {
+        margin-top: $navbar-height;
         position: relative;
 
         img {
