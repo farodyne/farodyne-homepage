@@ -1,6 +1,6 @@
 <script lang="ts">
     /**
-     * The component that implements the navigation bar in the frontend.
+     * The component that implements the navigation bar in the application.
      */
     import { Component, Vue, toNative } from 'vue-facing-decorator';
     import { Routes } from '@/constants';
@@ -18,33 +18,30 @@
     <div id="navbar-backdrop">
         <div class="gradient"></div>
     </div>
-    <nav>
-        <div class="logo">Federico Engler</div>
-        <div class="links">
-            <router-link v-for="link in navbarLinks" :to="`/${link}`">
-                <div class="link">
-                    <div class="icon">
-                        <fd-home-icon v-if="link === Routes.home" />
-                        <fd-trips-icon v-if="link === Routes.trips" />
-                        <fd-fantasy-icon v-if="link === Routes.fantasy" />
-                        <fd-misc-icon v-if="link === Routes.misc" />
+    <div class="navbar-container">
+        <nav>
+            <div class="logo">Federico Engler</div>
+            <div class="links">
+                <router-link v-for="link in navbarLinks" :to="`/${link}`">
+                    <div class="link">
+                        <div class="icon">
+                            <fd-home-icon v-if="link === Routes.home" />
+                            <fd-trips-icon v-if="link === Routes.trips" />
+                            <fd-fantasy-icon v-if="link === Routes.fantasy" />
+                            <fd-misc-icon v-if="link === Routes.misc" />
+                        </div>
+                        <div class="text">
+                            {{ link }}
+                        </div>
                     </div>
-                    <div class="text">
-                        {{ link }}
-                    </div>
-                </div>
-            </router-link>
-        </div>
-    </nav>
+                </router-link>
+            </div>
+        </nav>
+    </div>
 </template>
 
 <style lang="scss" scoped>
     @import '@/styles/vars.scss';
-
-    $navlink-color: #7ba4c6;
-    $navlink-active-color: #52c5e1;
-    $navlink-hover-color: #a6c4db;
-    $transition-duration: 0.3s;
 
     #navbar-backdrop {
         background-color: $primary-background-color;
@@ -65,60 +62,76 @@
         }
     }
 
-    nav {
-        align-items: center;
+    .navbar-container {
         display: flex;
-        height: $navbar-height;
-        justify-content: space-between;
-        position: fixed;
-        top: 0;
-        width: 100%;
-        z-index: 10;
+        justify-content: center;
 
-        .logo {
-            color: #b5b5b5;
-            font-family: $handwriting-font;
-            font-size: 4rem;
-            margin-left: 3rem;
-        }
-
-        .links {
+        nav {
+            align-items: center;
             display: flex;
+            height: $navbar-height;
+            justify-content: space-between;
+            max-width: $desktop-breakpoint;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 10;
 
-            .link {
-                align-items: center;
+            .logo {
+                color: $navbar-primary-color;
+                font-family: $handwriting-font;
+                font-size: 4rem;
+                margin-left: 3rem;
+
+                @media #{$mobile} {
+                    display: none;
+                }
+            }
+
+            .links {
                 display: flex;
+                margin-right: 3rem;
 
-                .icon {
-                    height: 2.6rem;
-                    margin: 0.6rem;
-                    width: 2.6rem;
+                @media #{$mobile} {
+                    width: 100%;
+                    justify-content: center;
                 }
 
-                .text {
-                    &::first-letter {
-                        text-transform: uppercase;
+                .link {
+                    align-items: center;
+                    display: flex;
+
+                    .icon {
+                        height: 2.6rem;
+                        margin: 0.6rem;
+                        width: 2.6rem;
+                    }
+
+                    .text {
+                        &::first-letter {
+                            text-transform: uppercase;
+                        }
                     }
                 }
-            }
 
-            a {
-                color: #c5c5c5;
-                font-family: $menu-font;
-                font-size: $navbar-font-size;
-                margin: 0 2rem;
-                text-decoration: none;
-                transition-duration: $transition-duration;
+                a {
+                    color: $navbar-primary-color;
+                    font-family: $menu-font;
+                    font-size: $navbar-font-size;
+                    margin-left: 2.4rem;
+                    text-decoration: none;
+                    transition-duration: 0.3s;
 
-                &:hover {
-                    color: $navlink-hover-color;
-                    @include blurry-text-shadow($navlink-color);
+                    &:hover {
+                        color: $navlink-hover-color;
+                        @include blurry-text-shadow($navlink-color);
+                    }
                 }
-            }
 
-            .router-link-active {
-                color: $navlink-active-color;
-                @include blurry-text-shadow(#7ba4c6);
+                .router-link-active {
+                    color: $navlink-active-color;
+                    @include blurry-text-shadow(#7ba4c6);
+                }
             }
         }
     }

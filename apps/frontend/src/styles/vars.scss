@@ -3,8 +3,12 @@ $primary-background-color: #252a30;
 $shadow-color: #111;
 
 // Navbar styles.
-$navbar-height: 6rem;
+$navbar-height: 7rem;
 $navbar-font-size: 2.2rem;
+$navbar-primary-color: #b9b9b9;
+$navlink-color: #7ba4c6;
+$navlink-active-color: #52c5e1;
+$navlink-hover-color: #a6c4db;
 
 // Font styles.
 $handwriting-font: 'Great Vibes', cursive;
@@ -21,3 +25,8 @@ $font-size-desktop: 2.6rem;
     -moz-box-shadow: $arguments;
     box-shadow: $arguments;
 }
+
+// Media query stuff.
+$desktop-breakpoint: 1200px;
+$mobile-breakpoint: 800px;
+$mobile: 'screen and (max-width: #{$mobile-breakpoint})';
