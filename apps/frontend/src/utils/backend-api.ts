@@ -9,10 +9,9 @@ export class BackendApi {
     /**
      * Method to fetch the frontpage carousel images from backend.
      */
-    async getFrontpageImages() {
+    async getCarouselImages() {
         // TODO: Add basic auth stuff.
-        const { data } = await axios.get(`${this.base}/rest/v1/albums/carousel-images`);
-        const images = data.images.sort(() => 0.5 - Math.random());
-        return images.slice(0, 3);
+        const { data } = await axios.get(`${this.base}/rest/v1/carousel-images/3`);
+        return data.images;
     }
 }

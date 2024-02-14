@@ -8,13 +8,13 @@ export class Utils {
     /**
      * Preloads the specified image.
      */
-    static loadImage(image: AlbumImage) {
+    static loadImage(image: AlbumImage): Promise<AlbumImage> {
         return new Promise((resolve, reject) => {
             const imageToLoad = new Image();
 
             // Resolve the returned promise if the image loads as expected.
             imageToLoad.onload = () => {
-                // resolve(new AlbumImage(image.url, image.caption));
+                resolve(image);
             };
 
             // Reject the returned promise if the image fails to load.

@@ -18,30 +18,30 @@
             this.loadCarouselImages();
         }
 
-        // Preload the carousel images.
+        /**
+         * Preload the carousel images.
+         */
         preloadImages(images: AlbumImage[]) {
-            /**
             images.forEach(async (image) => {
-                const loadedImage: AlbumImage = (await Utils.loadImage(image));
+                const loadedImage: AlbumImage = await Utils.loadImage(image);
 
                 if (loadedImage) {
                     this.images.push(loadedImage);
 
                     // When we have an image loaded, start the carousel.
                     if (this.images.length === 1) {
-                        this.startCarousel();
+                        // this.startCarousel();
                     }
                 }
             });
-             */
         }
 
-        // Loads the frontpage images and starts the carousel.
+        /**
+         * Loads the frontpage images and starts the carousel.
+         */
         async loadCarouselImages() {
             try {
-                const album = await new BackendApi().getFrontpageImages();
-                console.log('AAAAAA', JSON.stringify(album, null, 2));
-                // await this.preloadImages(album);
+                this.preloadImages(await new BackendApi().getCarouselImages());
             } catch (error) {
                 console.error('Failed to get frontpage images from server.');
             }
@@ -54,7 +54,7 @@
 <template>
     <div id="carousel-container">
         <div class="gradient" />
-        <img src="https://farodyne.com/media/frontpage/frontpage-3.webp" />
+        <img src="https://farodyne.com/media/frontpage/carousel-images/pic1.webp" />
     </div>
 </template>
 
@@ -66,7 +66,7 @@
         position: relative;
 
         img {
-            filter: sepia(10%);
+            filter: sepia(5%);
             width: 100%;
         }
 
