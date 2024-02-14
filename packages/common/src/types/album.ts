@@ -2,7 +2,6 @@
  * Model class for representing an album in the web page.
  */
 import { AlbumImage } from './album-image';
-import { environmentParameters } from '@/utils';
 
 export class Album {
     id: string;
@@ -16,12 +15,10 @@ export class Album {
         this.caption = caption;
         this.images = images;
 
-        // If the album contains images, transform the array to an array
-        // of frontend image models.
+        // Pre-calculate image URL:s.
         this.images = images
             ? images.map((image) => {
-                  const url = `${environmentParameters.contentUrl}/${type}/${id}/${image.id}`;
-                  return { ...image, url };
+                  return { ...image, url: `${type}/${id}/${image.id}` };
               })
             : [];
     }

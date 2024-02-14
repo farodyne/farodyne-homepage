@@ -7,11 +7,13 @@
      */
     import { Component, Vue, toNative } from 'vue-facing-decorator';
     import { AlbumImage } from 'farodyne-common';
+    import { CarouselImage } from '@/models';
     import { BackendApi, Utils } from '@/utils';
 
     @Component({ name: 'fd-frontpage-carousel' })
     class FrontpageCarousel extends Vue {
-        images: AlbumImage[] = [];
+        interval: number = 0;
+        images: CarouselImage[] = [];
 
         // Component creation hook.
         created() {
@@ -19,11 +21,48 @@
         }
 
         /**
+         * Clears the potentially initiated interval used to slowly display the
+         * images in the carousel.
+         */
+        clearInterval() {
+            if (this.interval) {
+                window.clearInterval(this.interval);
+            }
+        }
+
+        /**
+         * Makes the currently indexed carousel image visible.
+         */
+        showCarouselImage(index: number) {
+            this.images.forEach((image, i) => {
+                if (index !== i) {
+                    image.hide();
+                } else {
+                    image.show();
+                }
+            });
+        }
+
+        /**
+         * Starts the image carousel.
+         */
+        startCarousel(index = 0) {
+            this.clearInterval();
+            this.showCarouselImage(index);
+
+            // Start the carousel.
+            this.interval = window.setInterval(() => {
+                index = (index + 1) % this.images.length;
+                this.showCarouselImage(index);
+            });
+        }
+
+        /**
          * Preload the carousel images.
          */
         preloadImages(images: AlbumImage[]) {
             images.forEach(async (image) => {
-                const loadedImage: AlbumImage = await Utils.loadImage(image);
+                const loadedImage: CarouselImage = await Utils.loadImage(image);
 
                 if (loadedImage) {
                     this.images.push(loadedImage);

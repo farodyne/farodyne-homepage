@@ -5,8 +5,8 @@ import cors from 'cors';
 import express from 'express';
 import requestIp from 'request-ip';
 import bodyParser from 'body-parser';
-import { Album, EnvironmentParameters } from 'farodyne-common';
-import { DatabaseClient } from '@/utils';
+import { Album } from 'farodyne-common';
+import { DatabaseClient, EnvironmentParameters } from '@/utils';
 
 export class RestApi {
     databaseClient: DatabaseClient;

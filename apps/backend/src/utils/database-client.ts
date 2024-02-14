@@ -1,5 +1,5 @@
 import { MongoClient } from 'mongodb';
-import { EnvironmentParameters } from 'farodyne-common';
+import { EnvironmentParameters } from './environment-parameters';
 
 export class DatabaseClient {
     client!: MongoClient;
