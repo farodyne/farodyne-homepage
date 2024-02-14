@@ -6,21 +6,41 @@
      * goes, you only get one chance to provide a nice first impression.
      */
     import { Component, Vue, toNative } from 'vue-facing-decorator';
-    import { BackendApi } from '@/utils';
-    // import { AlbumImage } from '@/types';
+    import { AlbumImage } from 'farodyne-common';
+    import { BackendApi, Utils } from '@/utils';
 
     @Component({ name: 'fd-frontpage-carousel' })
     class FrontpageCarousel extends Vue {
+        images: AlbumImage[] = [];
+
         // Component creation hook.
         created() {
             this.loadCarouselImages();
+        }
+
+        // Preload the carousel images.
+        preloadImages(images: AlbumImage[]) {
+            /**
+            images.forEach(async (image) => {
+                const loadedImage: AlbumImage = (await Utils.loadImage(image));
+
+                if (loadedImage) {
+                    this.images.push(loadedImage);
+
+                    // When we have an image loaded, start the carousel.
+                    if (this.images.length === 1) {
+                        this.startCarousel();
+                    }
+                }
+            });
+             */
         }
 
         // Loads the frontpage images and starts the carousel.
         async loadCarouselImages() {
             try {
                 const album = await new BackendApi().getFrontpageImages();
-                console.log('AAAAAA', album);
+                console.log('AAAAAA', JSON.stringify(album, null, 2));
                 // await this.preloadImages(album);
             } catch (error) {
                 console.error('Failed to get frontpage images from server.');

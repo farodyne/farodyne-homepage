@@ -1,21 +1,5 @@
 /**
- * Common type definitions.
+ * Aggregate exports file for the types.
  */
-export interface AlbumImage {
-    id: string;
-    caption: string;
-}
-
-export interface Album extends AlbumImage {
-    type: string;
-    images: AlbumImage[];
-}
-
-export class Album {
-    constructor(album: Album) {
-        this.id = album.id;
-        this.caption = album.caption;
-        this.type = album.type;
-        this.images = album.images;
-    }
-}
+export * from './albumn';
+export * from './album-image';

@@ -5,8 +5,8 @@ import cors from 'cors';
 import express from 'express';
 import requestIp from 'request-ip';
 import bodyParser from 'body-parser';
-import { Album } from 'farodyne-common';
-import { DatabaseClient, EnvironmentParameters } from '@/utils';
+import { Album, EnvironmentParameters } from 'farodyne-common';
+import { DatabaseClient } from '@/utils';
 
 export class RestApi {
     databaseClient: DatabaseClient;
@@ -26,6 +26,7 @@ export class RestApi {
         const { apiRoot } = parameters;
 
         // Map API endpoints to local class methods.
+        this.api.get(apiRoot + '/carousel-images/:number', this.getCarouselImages.bind(this));
         this.api.get(apiRoot + '/albums/:id', this.getAlbum.bind(this));
     }
 
@@ -37,6 +38,27 @@ export class RestApi {
         const { apiRoot, apiPort } = this.parameters;
         console.info(`Started REST API at ${apiRoot} on port ${apiPort}.`);
         this.api.listen(apiPort);
+    }
+
+    /**
+     * Returns the number of specified carousel images to frontend.
+     */
+    async getCarouselImages(req: express.Request, res: express.Response) {
+        const {
+            params: { number }
+        } = req;
+
+        console.info(`IP [${requestIp.getClientIp(req)}] - Getting ${number} frontpage images.`);
+
+        const cursor: any = await this.databaseClient.getAlbum('carousel-images');
+
+        if (cursor) {
+            res.json(new Album(cursor));
+        } else {
+            const error = 'Could not find carousel images in the database.';
+            console.error({ error });
+            res.status(404).send({ error });
+        }
     }
 
     /**
