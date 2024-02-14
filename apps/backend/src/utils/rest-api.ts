@@ -50,10 +50,12 @@ export class RestApi {
 
         console.info(`IP [${requestIp.getClientIp(req)}] - Getting ${number} frontpage images.`);
 
-        const cursor: any = await this.databaseClient.getAlbum('carousel-images');
+        const album: any = await this.databaseClient.getAlbum('carousel-images');
 
-        if (cursor) {
-            res.json(new Album(cursor));
+        if (album) {
+            album.images.sort(() => 0.5 - Math.random());
+            album.images = album.images.slice(0, number);
+            res.json(new Album(album));
         } else {
             const error = 'Could not find carousel images in the database.';
             console.error({ error });
