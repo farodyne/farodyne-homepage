@@ -41,7 +41,7 @@ export class RestApi {
     }
 
     /**
-     * Returns the number of specified carousel images to frontend.
+     * Returns the number of specified carousel images in randomized order.
      */
     async getCarouselImages(req: express.Request, res: express.Response) {
         const {
