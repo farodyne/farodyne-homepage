@@ -114,9 +114,13 @@
 
     #carousel-container {
         height: auto;
-        margin-top: $navbar-height;
+        margin-top: $navbar-desktop-height;
         position: relative;
         width: 100%;
+
+        @media #{$mobile} {
+            margin-top: $navbar-mobile-height;
+        }
 
         img {
             transition: all 3s ease-in-out;

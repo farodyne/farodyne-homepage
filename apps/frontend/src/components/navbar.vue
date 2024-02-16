@@ -46,11 +46,15 @@
     #navbar-backdrop {
         background-color: $primary-background-color;
         filter: opacity(80%);
-        height: $navbar-height;
+        height: $navbar-desktop-height;
         position: fixed;
         top: 0;
         width: 100%;
         z-index: 90;
+
+        @media #{$mobile} {
+            height: $navbar-mobile-height;
+        }
 
         .gradient {
             background-image: linear-gradient(to bottom, rgba(255, 0, 0, 0), $primary-background-color);
@@ -69,13 +73,17 @@
         nav {
             align-items: center;
             display: flex;
-            height: $navbar-height;
+            height: $navbar-desktop-height;
             justify-content: space-between;
             max-width: $desktop-breakpoint;
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 100;
+
+            @media #{$mobile} {
+                height: $navbar-mobile-height;
+            }
 
             .logo {
                 color: $navbar-primary-color;
