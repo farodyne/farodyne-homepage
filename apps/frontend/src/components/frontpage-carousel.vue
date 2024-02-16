@@ -80,7 +80,7 @@
          */
         async loadCarouselImages() {
             try {
-                this.preloadImages(await new BackendApi().getCarouselImages());
+                this.preloadImages(await new BackendApi().getCarouselImages(5));
             } catch (error) {
                 console.error('Failed to get frontpage images from server.');
             }
@@ -146,7 +146,7 @@
         #image-bottom-gradient {
             background-image: linear-gradient(to top, $primary-background-color, rgba(0, 0, 0, 0));
             position: absolute;
-            height: 25%;
+            height: 30%;
             bottom: 0;
             width: 100%;
             z-index: 50;
