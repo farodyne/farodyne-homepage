@@ -12,7 +12,7 @@ export class Utils {
      * Preloads the specified image.
      */
     static loadImage(image: AlbumImage): Promise<CarouselImage> {
-        const imageUrl = `${this.contentUrl}/${image.url}`;
+        image.url = `${this.contentUrl}/${image.url}`;
 
         return new Promise((resolve, reject) => {
             const imageToLoad = new Image();
@@ -24,11 +24,11 @@ export class Utils {
 
             // Reject the returned promise if the image fails to load.
             imageToLoad.onerror = () => {
-                reject(new Error(`Failed to load image: ${imageUrl}`));
+                reject(new Error(`Failed to load image: ${image.url}`));
             };
 
             // This line triggers the actual loading.
-            imageToLoad.src = imageUrl;
+            imageToLoad.src = image.url;
         });
     }
 }

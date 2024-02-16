@@ -54,7 +54,7 @@
             this.interval = window.setInterval(() => {
                 index = (index + 1) % this.images.length;
                 this.showCarouselImage(index);
-            });
+            }, 10000);
         }
 
         /**
@@ -69,7 +69,7 @@
 
                     // When we have an image loaded, start the carousel.
                     if (this.images.length === 1) {
-                        // this.startCarousel();
+                        this.startCarousel();
                     }
                 }
             });
@@ -93,7 +93,11 @@
 <template>
     <div id="carousel-container">
         <div class="gradient" />
-        <img src="https://farodyne.com/media/frontpage/carousel-images/pic1.webp" />
+
+        <!-- The carousel images. -->
+        <div class="images" v-for="image in images" :key="image.url" oncontextmenu="return false;">
+            <img :src="image.url" :class="{ visible: image.visible, transparent: !image.visible }" />
+        </div>
     </div>
 </template>
 
@@ -101,21 +105,39 @@
     @import '@/styles/vars.scss';
 
     #carousel-container {
+        height: auto;
         margin-top: $navbar-height;
         position: relative;
 
-        img {
-            filter: sepia(5%);
-            width: 100%;
-        }
-
         .gradient {
+            border: 1px solid red;
             background-image: linear-gradient(to top, $primary-background-color, rgba(0, 0, 0, 0));
             position: absolute;
-            height: 25%;
+            // height: 25%;
+            height: 200px;
             bottom: 0;
             width: 100%;
-            z-index: 3;
+            z-index: 300;
+        }
+
+        .images {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+
+            img {
+                transition: all 3s ease-in-out;
+                width: 100%;
+            }
+
+            & .visible {
+                opacity: 1;
+            }
+
+            & .transparent {
+                opacity: 0;
+            }
         }
     }
 </style>
