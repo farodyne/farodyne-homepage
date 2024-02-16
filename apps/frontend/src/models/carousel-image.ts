@@ -8,9 +8,6 @@ export class CarouselImage extends AlbumImage {
 
     constructor(albumImage: AlbumImage) {
         super(albumImage);
-
-        console.log('AAAAAAAAAAAAAAAAAAAAAA');
-
         this.visible = false;
     }
 

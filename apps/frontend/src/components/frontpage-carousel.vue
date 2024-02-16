@@ -99,13 +99,14 @@
 
 <template>
     <div id="carousel-container">
+        <div id="image-bottom-gradient" />
         <img :src="backdropUrl" />
 
         <div id="images" v-for="image in images" :key="image.url" oncontextmenu="return false;">
             <img :src="image.url" :class="{ visible: image.visible, transparent: !image.visible }" />
         </div>
 
-        <div id="image-bottom-gradient" />
+        <div id="news-container"></div>
     </div>
 </template>
 
@@ -149,6 +150,13 @@
             bottom: 0;
             width: 100%;
             z-index: 50;
+        }
+
+        #news-container {
+            bottom: 0;
+            position: absolute;
+            width: 100%;
+            z-index: 220;
         }
     }
 </style>
