@@ -85,6 +85,13 @@
                 console.error('Failed to get frontpage images from server.');
             }
         }
+
+        /**
+         * Computed with path to backdrop image.
+         */
+        get backdropUrl() {
+            return Utils.fullImagePath('/frontpage/carousel-images/backdrop.webp');
+        }
     }
 
     export default toNative(FrontpageCarousel);
@@ -92,12 +99,13 @@
 
 <template>
     <div id="carousel-container">
-        <div class="gradient" />
+        <img :src="backdropUrl" />
 
-        <!-- The carousel images. -->
-        <div class="images" v-for="image in images" :key="image.url" oncontextmenu="return false;">
+        <div id="images" v-for="image in images" :key="image.url" oncontextmenu="return false;">
             <img :src="image.url" :class="{ visible: image.visible, transparent: !image.visible }" />
         </div>
+
+        <div id="image-bottom-gradient" />
     </div>
 </template>
 
@@ -108,28 +116,18 @@
         height: auto;
         margin-top: $navbar-height;
         position: relative;
+        width: 100%;
 
-        .gradient {
-            border: 1px solid red;
-            background-image: linear-gradient(to top, $primary-background-color, rgba(0, 0, 0, 0));
-            position: absolute;
-            // height: 25%;
-            height: 200px;
-            bottom: 0;
+        img {
+            transition: all 3s ease-in-out;
             width: 100%;
-            z-index: 300;
         }
 
-        .images {
+        #images {
             position: absolute;
             top: 0;
             left: 0;
             z-index: 10;
-
-            img {
-                transition: all 3s ease-in-out;
-                width: 100%;
-            }
 
             & .visible {
                 opacity: 1;
@@ -138,6 +136,15 @@
             & .transparent {
                 opacity: 0;
             }
+        }
+
+        #image-bottom-gradient {
+            background-image: linear-gradient(to top, $primary-background-color, rgba(0, 0, 0, 0));
+            position: absolute;
+            height: 25%;
+            bottom: 0;
+            width: 100%;
+            z-index: 50;
         }
     }
 </style>

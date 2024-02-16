@@ -50,7 +50,7 @@
         position: fixed;
         top: 0;
         width: 100%;
-        z-index: 5;
+        z-index: 90;
 
         .gradient {
             background-image: linear-gradient(to bottom, rgba(255, 0, 0, 0), $primary-background-color);
@@ -75,7 +75,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            z-index: 10;
+            z-index: 100;
 
             .logo {
                 color: $navbar-primary-color;

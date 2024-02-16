@@ -9,10 +9,17 @@ export class Utils {
     static contentUrl: string = import.meta.env.VITE_CONTENT_BASE;
 
     /**
+     * Returns the full image path including content base.
+     */
+    static fullImagePath(imageUrl: string) {
+        return `${this.contentUrl}/${imageUrl}`;
+    }
+
+    /**
      * Preloads the specified image.
      */
     static loadImage(image: AlbumImage): Promise<CarouselImage> {
-        image.url = `${this.contentUrl}/${image.url}`;
+        image.url = this.fullImagePath(image.url);
 
         return new Promise((resolve, reject) => {
             const imageToLoad = new Image();
