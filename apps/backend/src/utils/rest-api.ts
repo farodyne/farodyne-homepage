@@ -5,7 +5,7 @@ import cors from 'cors';
 import express from 'express';
 import requestIp from 'request-ip';
 import bodyParser from 'body-parser';
-import { Album } from 'farodyne-common';
+import { Album, AlbumImage } from 'farodyne-common';
 import { DatabaseClient, EnvironmentParameters } from '@/utils';
 
 export class RestApi {
@@ -28,6 +28,7 @@ export class RestApi {
         // Map API endpoints to local class methods.
         this.api.get(apiRoot + '/carousel-images/:number', this.getCarouselImages.bind(this));
         this.api.get(apiRoot + '/albums/:id', this.getAlbum.bind(this));
+        this.api.get(apiRoot + '/news/:number', this.getNews.bind(this));
     }
 
     /**
@@ -64,6 +65,36 @@ export class RestApi {
     }
 
     /**
+     * Fetches the N newest albums from the database.
+     */
+    async getNews(req: express.Request, res: express.Response) {
+        const {
+            params: { count }
+        } = req;
+
+        const latestAlbums = await this.databaseClient.getNews(Number(count || 3));
+
+        if (latestAlbums) {
+            const albumArray = await latestAlbums.toArray();
+
+            res.json(
+                albumArray.map(
+                    (album) =>
+                        new AlbumImage({
+                            id: album.id,
+                            caption: album.caption,
+                            url: `${album.type}/${album.id}/thumbnail.webp`
+                        })
+                )
+            );
+        } else {
+            const error = 'Failed to fetch latest album thumbnails.';
+            console.error({ error });
+            res.status(404).send({ error });
+        }
+    }
+
+    /**
      * Method for retrieving an individual photo album.
      */
     async getAlbum(req: express.Request, res: express.Response) {
@@ -76,7 +107,6 @@ export class RestApi {
         const cursor: any = await this.databaseClient.getAlbum(id);
 
         if (cursor) {
-            console.log('AAAAAAAAAA', cursor);
             res.json(new Album(cursor));
         } else {
             const error = `No album with id: ${id}.`;
