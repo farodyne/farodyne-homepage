@@ -30,9 +30,9 @@ export class DatabaseClient {
     }
 
     /**
-     * Method to return the N newest albums from the database.
+     * Method to return the N latest albums from the database.
      */
-    async getNews(limit: number) {
+    async getLatestAlbums(limit: number) {
         const { databaseName } = this.parameters;
         return await this.client.db(databaseName).collection('albums').find({}).sort({ created: -1 }).limit(limit);
     }

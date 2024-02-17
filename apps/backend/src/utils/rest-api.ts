@@ -72,7 +72,7 @@ export class RestApi {
             params: { count }
         } = req;
 
-        const latestAlbums = await this.databaseClient.getNews(Number(count || 3));
+        const latestAlbums = await this.databaseClient.getLatestAlbums(Number(count || 3));
 
         if (latestAlbums) {
             const albumArray = await latestAlbums.toArray();
