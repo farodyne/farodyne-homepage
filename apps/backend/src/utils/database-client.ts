@@ -1,6 +1,9 @@
+/**
+ * Database client class that implements our operations towards the database.
+ */
 import { MongoClient } from 'mongodb';
 import { EnvironmentParameters } from './environment-parameters';
-import { Album, AlbumImage, AlbumTypes } from 'farodyne-common';
+import { Album, AlbumImage, AlbumMiniature, AlbumTypes } from 'farodyne-common';
 
 export class DatabaseClient {
     client!: MongoClient;
@@ -35,7 +38,27 @@ export class DatabaseClient {
      */
     async getLatestAlbums(limit: number) {
         const { databaseName } = this.parameters;
-        return await this.client.db(databaseName).collection('albums').find({}).sort({ created: -1 }).limit(limit);
+
+        const albums = await this.client
+            .db(databaseName)
+            .collection('albums')
+            .find({})
+            .sort({ created: -1 })
+            .limit(limit);
+
+        // Bail out if album not found.
+        if (!albums) {
+            throw new Error(`Failed to find latest albums in the database.`);
+        }
+
+        const albumArray = await albums.toArray();
+
+        // Calculate image paths.
+        return albumArray.map((album) => {
+            const { id, caption, type } = album;
+            const url = `${this.parameters.contentUrl}/${type}/${id}/thumbnail.webp`;
+            return new AlbumMiniature(id, caption, type, url);
+        });
     }
 
     /**

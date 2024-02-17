@@ -19,8 +19,6 @@ export class Utils {
      * Preloads the specified image.
      */
     static loadImage(image: AlbumImage): Promise<CarouselImage> {
-        // image.url = this.fullImagePath(image.url);
-
         return new Promise((resolve, reject) => {
             const imageToLoad = new Image();
 

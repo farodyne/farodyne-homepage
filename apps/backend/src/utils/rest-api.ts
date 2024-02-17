@@ -73,22 +73,12 @@ export class RestApi {
 
         console.info(`IP [${requestIp.getClientIp(req)}] - Getting latest ${count} albums.`);
 
-        const latestAlbums = await this.databaseClient.getLatestAlbums(Number(count || 3));
-
-        if (latestAlbums) {
-            const albumArray = await latestAlbums.toArray();
-
-            res.json(
-                albumArray.map((album) => {
-                    const { id, caption, type } = album;
-                    const url = `${this.parameters.contentUrl}/${type}/${id}/thumbnail.webp`;
-                    return new AlbumImage(caption, url);
-                })
-            );
-        } else {
-            const error = 'Failed to fetch latest album thumbnails.';
-            console.error({ error });
-            res.status(404).send({ error });
+        try {
+            const latestAlbums = await this.databaseClient.getLatestAlbums(Number(count || 3));
+            res.json(latestAlbums);
+        } catch (error: any) {
+            console.error(error);
+            res.status(404).send({ error: error.message });
         }
     }
 
