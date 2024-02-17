@@ -6,7 +6,7 @@ export class AlbumImage {
     caption: string;
     url: string;
 
-    constructor({ id, caption, url }: AlbumImage) {
+    constructor(id: string, caption: string, url: string) {
         this.id = id;
         this.caption = caption;
         this.url = url;

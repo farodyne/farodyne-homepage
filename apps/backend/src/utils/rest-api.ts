@@ -28,7 +28,7 @@ export class RestApi {
         // Map API endpoints to local class methods.
         this.api.get(apiRoot + '/carousel-images/:number', this.getCarouselImages.bind(this));
         this.api.get(apiRoot + '/albums/:id', this.getAlbum.bind(this));
-        this.api.get(apiRoot + '/news/:number', this.getNews.bind(this));
+        this.api.get(apiRoot + '/latest-albums/:count', this.getLatestAlbums.bind(this));
     }
 
     /**
@@ -67,10 +67,12 @@ export class RestApi {
     /**
      * Fetches the N newest albums from the database.
      */
-    async getNews(req: express.Request, res: express.Response) {
+    async getLatestAlbums(req: express.Request, res: express.Response) {
         const {
             params: { count }
         } = req;
+
+        console.info(`IP [${requestIp.getClientIp(req)}] - Getting latest ${count} albums.`);
 
         const latestAlbums = await this.databaseClient.getLatestAlbums(Number(count || 3));
 
@@ -79,12 +81,7 @@ export class RestApi {
 
             res.json(
                 albumArray.map(
-                    (album) =>
-                        new AlbumImage({
-                            id: album.id,
-                            caption: album.caption,
-                            url: `${album.type}/${album.id}/thumbnail.webp`
-                        })
+                    (album) => new AlbumImage(album.id, album.caption, `${album.type}/${album.id}/thumbnail.webp`)
                 )
             );
         } else {

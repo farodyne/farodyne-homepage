@@ -26,7 +26,7 @@ export class Utils {
 
             // Resolve the returned promise if the image loads as expected.
             imageToLoad.onload = () => {
-                resolve(new CarouselImage(image));
+                resolve(new CarouselImage(image.id, image.caption, image.url));
             };
 
             // Reject the returned promise if the image fails to load.
