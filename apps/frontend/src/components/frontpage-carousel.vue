@@ -106,7 +106,9 @@
             <img :src="image.url" :class="{ visible: image.visible, transparent: !image.visible }" />
         </div>
 
-        <div id="news-container"></div>
+        <div id="latest-albums-container">
+            <fd-latest-albums />
+        </div>
     </div>
 </template>
 
@@ -132,7 +134,6 @@
             position: absolute;
             top: 0;
             left: 0;
-            z-index: 10;
 
             & .visible {
                 opacity: 1;
@@ -149,14 +150,15 @@
             height: 30%;
             bottom: 0;
             width: 100%;
-            z-index: 50;
+            z-index: 3;
         }
 
-        #news-container {
-            bottom: 0;
+        #latest-albums-container {
+            border: 1px solid red;
+            bottom: 100px;
             position: absolute;
             width: 100%;
-            z-index: 220;
+            z-index: 5;
         }
     }
 </style>

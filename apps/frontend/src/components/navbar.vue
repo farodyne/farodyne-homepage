@@ -50,7 +50,7 @@
         position: fixed;
         top: 0;
         width: 100%;
-        z-index: 90;
+        z-index: 9;
 
         @media #{$mobile} {
             height: $navbar-mobile-height;
@@ -79,7 +79,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            z-index: 100;
+            z-index: 10;
 
             @media #{$mobile} {
                 height: $navbar-mobile-height;

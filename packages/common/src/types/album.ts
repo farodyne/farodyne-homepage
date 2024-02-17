@@ -1,25 +1,21 @@
 /**
- * Model class for representing an album in the web page.
+ * Model class used to represent album objects.
  */
+import { AlbumTypes } from './album-types';
 import { AlbumImage } from './album-image';
 
 export class Album {
     id: string;
-    type: string;
     caption: string;
+    type: string;
     images: AlbumImage[];
+    videos: AlbumImage[];
 
-    constructor({ id, type, caption, images }: Album) {
+    constructor(id: string, caption: string, type: AlbumTypes, images: AlbumImage[] = [], videos: AlbumImage[] = []) {
         this.id = id;
-        this.type = type;
         this.caption = caption;
+        this.type = type;
         this.images = images;
-
-        // Pre-calculate image URL:s.
-        this.images = images
-            ? images.map((image) => {
-                  return { ...image, url: `${type}/${id}/${image.id}` };
-              })
-            : [];
+        this.videos = videos;
     }
 }

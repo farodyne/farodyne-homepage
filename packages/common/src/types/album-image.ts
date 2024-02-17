@@ -1,13 +1,11 @@
 /**
- * Model class used to represent an album image.
+ * Model class used to represent album image objects.
  */
 export class AlbumImage {
-    id: string;
     caption: string;
     url: string;
 
-    constructor(id: string, caption: string, url: string) {
-        this.id = id;
+    constructor(caption: string, url: string) {
         this.caption = caption;
         this.url = url;
     }

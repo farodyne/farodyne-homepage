@@ -6,8 +6,8 @@ import { AlbumImage } from 'farodyne-common';
 export class CarouselImage extends AlbumImage {
     visible: boolean;
 
-    constructor(id: string, caption: string, url: string) {
-        super(id, caption, url);
+    constructor(id: string, caption: string) {
+        super(id, caption);
         this.visible = false;
     }
 

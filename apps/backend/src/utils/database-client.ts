@@ -1,5 +1,6 @@
 import { MongoClient } from 'mongodb';
 import { EnvironmentParameters } from './environment-parameters';
+import { Album, AlbumImage, AlbumTypes } from 'farodyne-common';
 
 export class DatabaseClient {
     client!: MongoClient;
@@ -42,6 +43,20 @@ export class DatabaseClient {
      */
     async getAlbum(id: string) {
         const { databaseName } = this.parameters;
-        return await this.client.db(databaseName).collection('albums').findOne({ id });
+        const album = await this.client.db(databaseName).collection('albums').findOne({ id });
+
+        // Bail out if album not found.
+        if (!album) {
+            throw new Error(`No album with id: ${id} found in database.`);
+        }
+
+        // Calculate image paths.
+        album.images = album.images.map(
+            (image: any) =>
+                new AlbumImage(image.caption, `${this.parameters.contentUrl}/${album.type}/${album.id}/${image.id}`)
+        );
+
+        const { caption, type, images, videos } = album;
+        return new Album(id, caption, type as AlbumTypes, images, videos);
     }
 }

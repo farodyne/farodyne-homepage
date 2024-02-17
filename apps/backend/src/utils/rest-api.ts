@@ -7,6 +7,7 @@ import requestIp from 'request-ip';
 import bodyParser from 'body-parser';
 import { Album, AlbumImage } from 'farodyne-common';
 import { DatabaseClient, EnvironmentParameters } from '@/utils';
+import { AlbumTypes } from '../../../../packages/common/dist/types/album-types';
 
 export class RestApi {
     databaseClient: DatabaseClient;
@@ -26,7 +27,7 @@ export class RestApi {
         const { apiRoot } = parameters;
 
         // Map API endpoints to local class methods.
-        this.api.get(apiRoot + '/carousel-images/:number', this.getCarouselImages.bind(this));
+        this.api.get(apiRoot + '/carousel-images/:count', this.getCarouselImages.bind(this));
         this.api.get(apiRoot + '/albums/:id', this.getAlbum.bind(this));
         this.api.get(apiRoot + '/latest-albums/:count', this.getLatestAlbums.bind(this));
     }
@@ -46,21 +47,19 @@ export class RestApi {
      */
     async getCarouselImages(req: express.Request, res: express.Response) {
         const {
-            params: { number }
+            params: { count }
         } = req;
 
-        console.info(`IP [${requestIp.getClientIp(req)}] - Getting ${number} frontpage images.`);
+        console.info(`IP [${requestIp.getClientIp(req)}] - Getting ${count} frontpage images.`);
 
-        const album: any = await this.databaseClient.getAlbum('carousel-images');
-
-        if (album) {
+        try {
+            const album = await this.databaseClient.getAlbum('carousel-images');
             album.images.sort(() => 0.5 - Math.random());
-            album.images = album.images.slice(0, number);
-            res.json(new Album(album));
-        } else {
-            const error = 'Could not find carousel images in the database.';
-            console.error({ error });
-            res.status(404).send({ error });
+            album.images = album.images.slice(0, Number(count));
+            res.json(album);
+        } catch (error: any) {
+            console.error(error);
+            res.status(404).send({ error: error.message });
         }
     }
 
@@ -80,9 +79,11 @@ export class RestApi {
             const albumArray = await latestAlbums.toArray();
 
             res.json(
-                albumArray.map(
-                    (album) => new AlbumImage(album.id, album.caption, `${album.type}/${album.id}/thumbnail.webp`)
-                )
+                albumArray.map((album) => {
+                    const { id, caption, type } = album;
+                    const url = `${this.parameters.contentUrl}/${type}/${id}/thumbnail.webp`;
+                    return new AlbumImage(caption, url);
+                })
             );
         } else {
             const error = 'Failed to fetch latest album thumbnails.';
@@ -92,7 +93,7 @@ export class RestApi {
     }
 
     /**
-     * Method for retrieving an individual photo album.
+     * Retreives an individual photo album.
      */
     async getAlbum(req: express.Request, res: express.Response) {
         const {
@@ -101,14 +102,17 @@ export class RestApi {
 
         console.info(`Request from ${requestIp.getClientIp(req)} - Getting album "${id}".`);
 
-        const cursor: any = await this.databaseClient.getAlbum(id);
+        const cursor = await this.databaseClient.getAlbum(id);
 
+        /**
         if (cursor) {
-            res.json(new Album(cursor));
+            const { id, caption, type, images, videos } = cursor;
+            res.json(new Album(id, caption, type as AlbumTypes, images, videos));
         } else {
             const error = `No album with id: ${id}.`;
             console.error({ error });
             res.status(404).send({ error });
         }
+         */
     }
 }
