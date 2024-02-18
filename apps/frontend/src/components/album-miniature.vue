@@ -33,7 +33,7 @@
     .album-miniature-container {
         border: 1px solid #666;
         border-radius: 1rem;
-        margin: 0 2.8rem 4rem 2.8rem;
+        margin: 0 3.2rem 4rem 3.2rem;
         overflow: hidden;
         transition-duration: $transition-duration;
 

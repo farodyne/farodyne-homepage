@@ -56,7 +56,7 @@
 
             h2 {
                 font-family: $handwriting-font;
-                font-size: 4rem;
+                font-size: 3.2rem;
                 font-weight: 100;
                 margin: 1rem;
                 text-shadow: 1px 1px 3px black;
