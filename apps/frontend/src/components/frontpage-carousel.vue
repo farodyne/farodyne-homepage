@@ -11,7 +11,7 @@
     import { BackendApi, Utils } from '@/utils';
 
     @Component({ name: 'fd-frontpage-carousel' })
-    class FrontpageCarousel extends Vue {
+    class FrontpageCarouselComponent extends Vue {
         interval: number = 0;
         images: CarouselImage[] = [];
 
@@ -94,7 +94,7 @@
         }
     }
 
-    export default toNative(FrontpageCarousel);
+    export default toNative(FrontpageCarouselComponent);
 </script>
 
 <template>
@@ -154,8 +154,7 @@
         }
 
         #latest-albums-container {
-            border: 1px solid red;
-            bottom: 100px;
+            bottom: -3rem;
             position: absolute;
             width: 100%;
             z-index: 5;

@@ -1,6 +1,7 @@
 // Colors.
 $primary-background-color: #252a30;
-$shadow-color: #111;
+$primary-font-color: #b9b9b9;
+$shadow-color: black;
 
 // Navbar styles.
 $navbar-desktop-height: 7rem;
@@ -12,9 +13,13 @@ $navlink-active-color: #52c5e1;
 $navlink-hover-color: #a6c4db;
 
 // Font styles.
-$handwriting-font: 'Great Vibes', cursive;
+$handwriting-font: 'Hurricane', cursive;
+$logo-font: 'Great Vibes', cursive;
 $menu-font: 'Abel', sans-serif;
 $font-size-desktop: 2.6rem;
+
+// Durations.
+$transition-duration: 0.4s;
 
 // Mixins.
 @mixin blurry-text-shadow($color) {

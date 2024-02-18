@@ -6,12 +6,12 @@
     import { Routes } from '@/constants';
 
     @Component({ name: 'fd-navbar' })
-    class Navbar extends Vue {
+    class NavbarComponent extends Vue {
         navbarLinks = [Routes.home, Routes.trips, Routes.fantasy, Routes.misc];
         Routes = Routes;
     }
 
-    export default toNative(Navbar);
+    export default toNative(NavbarComponent);
 </script>
 
 <template>
@@ -87,7 +87,7 @@
 
             .logo {
                 color: $navbar-primary-color;
-                font-family: $handwriting-font;
+                font-family: $logo-font;
                 font-size: 4rem;
                 margin-left: 3rem;
 
@@ -128,7 +128,7 @@
                     font-size: $navbar-font-size;
                     margin-left: 2.4rem;
                     text-decoration: none;
-                    transition-duration: 0.3s;
+                    transition-duration: $transition-duration;
 
                     &:hover {
                         color: $navlink-hover-color;
