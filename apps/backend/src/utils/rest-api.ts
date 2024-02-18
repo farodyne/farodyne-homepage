@@ -5,9 +5,7 @@ import cors from 'cors';
 import express from 'express';
 import requestIp from 'request-ip';
 import bodyParser from 'body-parser';
-import { Album, AlbumImage } from 'farodyne-common';
 import { DatabaseClient, EnvironmentParameters } from '@/utils';
-import { AlbumTypes } from '../../../../packages/common/dist/types/album-types';
 
 export class RestApi {
     databaseClient: DatabaseClient;
@@ -30,6 +28,7 @@ export class RestApi {
         this.api.get(apiRoot + '/carousel-images/:count', this.getCarouselImages.bind(this));
         this.api.get(apiRoot + '/albums/:id', this.getAlbum.bind(this));
         this.api.get(apiRoot + '/latest-albums/:count', this.getLatestAlbums.bind(this));
+        this.api.get(apiRoot + '/sections/:type', this.getSection.bind(this));
     }
 
     /**
@@ -74,8 +73,7 @@ export class RestApi {
         console.info(`IP [${requestIp.getClientIp(req)}] - Getting latest ${count} albums.`);
 
         try {
-            const latestAlbums = await this.databaseClient.getLatestAlbums(Number(count || 3));
-            res.json(latestAlbums);
+            res.json(await this.databaseClient.getLatestAlbums(Number(count || 3)));
         } catch (error: any) {
             console.error(error);
             res.status(404).send({ error: error.message });
@@ -104,5 +102,23 @@ export class RestApi {
             res.status(404).send({ error });
         }
          */
+    }
+
+    /**
+     * Retreives an individual photo album.
+     */
+    async getSection(req: express.Request, res: express.Response) {
+        const {
+            params: { type }
+        } = req;
+
+        console.info(`Request from ${requestIp.getClientIp(req)} - Getting albums of type "${type}".`);
+
+        try {
+            res.json(await this.databaseClient.getSection(type));
+        } catch (error: any) {
+            console.error(error);
+            res.status(404).send({ error: error.message });
+        }
     }
 }

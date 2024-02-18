@@ -33,20 +33,24 @@
     .album-miniature-container {
         border: 1px solid #666;
         border-radius: 1rem;
-        margin: 0 3.2rem 4rem 3.2rem;
+        margin: 0 3.6rem 4rem 3.6rem;
         overflow: hidden;
+        position: relative;
         transition-duration: $transition-duration;
 
-        @include box-shadow(0 0 2.4rem 0 $shadow-color);
+        @include box-shadow(0 0 3rem 0 $shadow-color);
 
         .caption {
             background-color: black;
+            bottom: 0;
             color: $primary-font-color;
             font-family: $menu-font;
             font-size: 1.6rem;
             font-weight: bold;
             padding: 4px;
+            position: absolute;
             text-align: center;
+            width: 100%;
         }
 
         a {
@@ -54,12 +58,14 @@
         }
 
         img {
-            height: 90px;
+            filter: saturate(75%);
+            height: 140px;
             transition-duration: $transition-duration;
-            width: 250px;
+            width: 270px;
 
             &:hover {
-                transform: scale(1.1);
+                filter: saturate(100%);
+                transform: scale(1.08);
             }
         }
 

@@ -48,7 +48,7 @@ export class DatabaseClient {
 
         // Bail out if album not found.
         if (!albums) {
-            throw new Error(`Failed to find latest albums in the database.`);
+            throw new Error('Failed to find latest albums in the database.');
         }
 
         const albumArray = await albums.toArray();
@@ -81,5 +81,27 @@ export class DatabaseClient {
 
         const { caption, type, images, videos } = album;
         return new Album(id, caption, type as AlbumTypes, images, videos);
+    }
+
+    /**
+     * Method to return a section of miniature album objects.
+     */
+    async getSection(type: string) {
+        const { databaseName } = this.parameters;
+        const albums = await this.client.db(databaseName).collection('albums').find({ type });
+
+        // Bail out if album not found.
+        if (!albums) {
+            throw new Error(`Failed to find albums of type ${type} in the database.`);
+        }
+
+        const albumArray = await albums.toArray();
+
+        // Calculate image paths.
+        return albumArray.map((album) => {
+            const { id, caption } = album;
+            const url = `${this.parameters.contentUrl}/${type}/${id}/thumbnail.webp`;
+            return new AlbumMiniature(id, caption, type as AlbumTypes, url);
+        });
     }
 }
