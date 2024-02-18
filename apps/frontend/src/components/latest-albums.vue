@@ -27,7 +27,9 @@
 <template>
     <div class="latest-albums-container">
         <div class="latest-albums">
-            <h2>Latest albums</h2>
+            <div class="heading">
+                <fd-contrasted-text text="Latest albums" />
+            </div>
             <div class="album-miniatures">
                 <div v-for="(miniature, index) in albumMiniatures" :key="index">
                     <fd-album-miniature :album-miniature="miniature" />
@@ -54,12 +56,8 @@
             z-index: 5;
             width: 100%;
 
-            h2 {
-                font-family: $handwriting-font;
-                font-size: 3.2rem;
-                font-weight: 100;
-                margin: 1rem;
-                text-shadow: 1px 1px 3px black;
+            .heading {
+                margin-bottom: 2rem;
             }
 
             .album-miniatures {
