@@ -51,7 +51,7 @@
             display: flex;
             flex-direction: column;
             position: absolute;
-            z-index: 8;
+            z-index: 5;
             width: 100%;
 
             h2 {
