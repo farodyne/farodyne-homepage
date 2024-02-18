@@ -26,45 +26,54 @@
 </script>
 
 <template>
-    <div class="latest-albums">
-        <h2>Latest albums</h2>
-        <div class="album-miniatures">
-            <div v-for="(miniature, index) in albumMiniatures" :key="index">
-                <fd-album-miniature :album-miniature="miniature" />
+    <div class="latest-albums-container">
+        <div class="latest-albums">
+            <h2>Latest albums</h2>
+            <div class="album-miniatures">
+                <div v-for="(miniature, index) in albumMiniatures" :key="index">
+                    <fd-album-miniature :album-miniature="miniature" />
+                </div>
             </div>
+            <div class="copyright">All images and videos © Federico Engler</div>
         </div>
-        <div class="copyright">All images and videos © Federico Engler</div>
     </div>
 </template>
 
 <style lang="scss" scoped>
     @import '@/styles/vars.scss';
 
-    .latest-albums {
-        color: $primary-font-color;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+    .latest-albums-container {
+        position: relative;
 
-        h2 {
-            font-family: $handwriting-font;
-            font-size: 4rem;
-            font-weight: 100;
-            margin: 1rem;
-            text-shadow: 1px 1px 3px black;
-        }
-
-        .album-miniatures {
+        .latest-albums {
+            align-items: center;
+            top: -12rem;
+            color: $primary-font-color;
             display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-        }
+            flex-direction: column;
+            position: absolute;
+            z-index: 8;
+            width: 100%;
 
-        .copyright {
-            filter: opacity(65%);
-            font-family: $menu-font;
-            font-size: 1.4rem;
-            margin-top: 4rem;
+            h2 {
+                font-family: $handwriting-font;
+                font-size: 4rem;
+                font-weight: 100;
+                margin: 1rem;
+                text-shadow: 1px 1px 3px black;
+            }
+
+            .album-miniatures {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+            }
+
+            .copyright {
+                filter: opacity(60%);
+                font-family: $menu-font;
+                font-size: 1.4rem;
+            }
         }
     }
 </style>

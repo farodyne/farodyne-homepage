@@ -105,10 +105,6 @@
         <div id="images" v-for="image in images" :key="image.url" oncontextmenu="return false;">
             <img :src="image.url" :class="{ visible: image.visible, transparent: !image.visible }" />
         </div>
-
-        <div id="latest-albums-container">
-            <fd-latest-albums />
-        </div>
     </div>
 </template>
 
@@ -151,13 +147,6 @@
             bottom: 0;
             width: 100%;
             z-index: 3;
-        }
-
-        #latest-albums-container {
-            bottom: -3rem;
-            position: absolute;
-            width: 100%;
-            z-index: 5;
         }
     }
 </style>
