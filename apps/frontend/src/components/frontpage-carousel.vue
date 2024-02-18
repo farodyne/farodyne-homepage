@@ -82,7 +82,7 @@
             try {
                 this.preloadImages(await new BackendApi().getCarouselImages(5));
             } catch (error) {
-                console.error('Failed to get frontpage images from server.');
+                console.error('Failed to get frontpage images from server.', error);
             }
         }
 

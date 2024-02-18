@@ -1,7 +1,7 @@
 <script lang="ts">
     /**
-     * This component implements the functionality to fetch and display the thumbnails
-     * for the latest and newest albums on the server.
+     * This component implements the functionality to fetch and display the album
+     * miniatures for the latest albums from the server.
      */
     import { Component, Vue, toNative } from 'vue-facing-decorator';
     import { AlbumMiniature } from 'farodyne-common';
@@ -9,7 +9,6 @@
 
     @Component({ name: 'fd-latest-albums' })
     class LatestAlbumsComponent extends Vue {
-        // The array of album miniatures.
         albumMiniatures!: AlbumMiniature[];
 
         // Component creation hook.
