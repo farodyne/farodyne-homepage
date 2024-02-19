@@ -59,6 +59,9 @@ importers:
       axios:
         specifier: ^1.6.7
         version: 1.6.7
+      v-lazy-image:
+        specifier: ^2.1.1
+        version: 2.1.1
       vue:
         specifier: ^3.4.15
         version: 3.4.18(typescript@5.3.3)
@@ -1641,6 +1644,10 @@ packages:
   /utils-merge@1.0.1:
     resolution: {integrity: sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA==}
     engines: {node: '>= 0.4.0'}
+    dev: false
+
+  /v-lazy-image@2.1.1:
+    resolution: {integrity: sha512-QC6Jcok99CRhhsO7svfI3hcBaT945dSuaHk3jr7WHm+QJMzbB/f32xKkdF45qL5ezd5KeoqHKh4gD92mQtjfXQ==}
     dev: false
 
   /vary@1.1.2:

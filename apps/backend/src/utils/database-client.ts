@@ -79,8 +79,8 @@ export class DatabaseClient {
                 new AlbumImage(image.caption, `${this.parameters.contentUrl}/${album.type}/${album.id}/${image.id}`)
         );
 
-        const { caption, type, images, videos } = album;
-        return new Album(id, caption, type as AlbumTypes, images, videos);
+        const { caption, type, images, videos, width } = album;
+        return new Album(id, caption, type as AlbumTypes, images, videos, width || 1275);
     }
 
     /**

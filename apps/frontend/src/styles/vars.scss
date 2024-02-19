@@ -33,6 +33,7 @@ $transition-duration: 0.4s;
 }
 
 // Media query stuff.
+$max-album-width: 1275px;
 $desktop-breakpoint: 1200px;
 $mobile-breakpoint: 800px;
 $mobile: 'screen and (max-width: #{$mobile-breakpoint})';

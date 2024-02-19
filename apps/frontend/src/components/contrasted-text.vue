@@ -38,7 +38,7 @@
         }
 
         .gradient {
-            width: 10rem;
+            width: 7rem;
         }
 
         .left {

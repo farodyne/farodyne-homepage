@@ -32,4 +32,13 @@ export class BackendApi {
         const { data } = await axios.get(`${this.base}/sections/${type}`);
         return data;
     }
+
+    /**
+     * Method to fetch the images in the specified album.
+     */
+    async getAlbum(id: string) {
+        // TODO: Add basic auth stuff.
+        const { data } = await axios.get(`${this.base}/albums/${id}`);
+        return data;
+    }
 }

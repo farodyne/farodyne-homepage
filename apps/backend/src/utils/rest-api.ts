@@ -90,18 +90,12 @@ export class RestApi {
 
         console.info(`Request from ${requestIp.getClientIp(req)} - Getting album "${id}".`);
 
-        const cursor = await this.databaseClient.getAlbum(id);
-
-        /**
-        if (cursor) {
-            const { id, caption, type, images, videos } = cursor;
-            res.json(new Album(id, caption, type as AlbumTypes, images, videos));
-        } else {
-            const error = `No album with id: ${id}.`;
-            console.error({ error });
-            res.status(404).send({ error });
+        try {
+            res.json(await this.databaseClient.getAlbum(id));
+        } catch (error: any) {
+            console.error(error);
+            res.status(404).send({ error: error.message });
         }
-         */
     }
 
     /**
