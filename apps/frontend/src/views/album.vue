@@ -4,12 +4,12 @@
      * album ID is provided as a path parameter and used to fetch the album details
      * from the backend service.
      */
-    import { Component, Vue } from 'vue-facing-decorator';
+    import { Component, Vue, toNative } from 'vue-facing-decorator';
     import type { Album } from 'farodyne-common';
     import { BackendApi } from '@/utils';
 
     @Component
-    export default class PageAlbum extends Vue {
+    class AlbumComponent extends Vue {
         album!: Album;
 
         // The "created" hook for this view.
@@ -28,6 +28,8 @@
             return `max-width: ${this.album?.width}px;`;
         }
     }
+
+    export default toNative(AlbumComponent);
 </script>
 
 <template>
@@ -48,7 +50,9 @@
 
             <div class="image" v-for="(image, i) in album.images" :key="i" oncontextmenu="return false;">
                 <v-lazy-image :src="image.url" />
-                <div class="caption">{{ image.caption }}</div>
+                <div class="caption-container" :class="{ 'right-text': i % 2 === 1 }">
+                    <div class="caption">{{ image.caption }}</div>
+                </div>
             </div>
         </div>
     </div>
@@ -65,9 +69,9 @@
         h1 {
             color: $primary-font-color;
             font-family: $handwriting-font;
-            font-size: 6rem;
+            font-size: 4rem;
             font-weight: 100;
-            margin: 3rem 0 0 0;
+            margin: 2rem 0 0 0;
             text-align: center;
         }
 
@@ -77,8 +81,10 @@
 
             .video,
             .image {
+                border: 2px solid #666;
                 height: auto;
                 margin: 2rem 1rem 3rem 1rem;
+                position: relative;
 
                 img {
                     width: 100%;
@@ -102,10 +108,23 @@
         }
          */
 
-        .caption {
-            // color: $secondary-foreground-color;
-            // font-size: $font-size-sm;
-            text-align: center;
+        .caption-container {
+            bottom: 0;
+            color: $primary-font-color;
+            display: flex;
+            font-family: $menu-font;
+            font-size: 1.6rem;
+            position: absolute;
+            width: 100%;
+
+            .caption {
+                background-color: rgba(0, 0, 0, 0.5);
+                padding: 0.2rem 1rem;
+            }
+        }
+
+        .right-text {
+            justify-content: right;
         }
     }
 </style>
