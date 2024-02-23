@@ -11,8 +11,8 @@ export class EnvironmentParameters {
     databaseName?: string = process.env.FARODYNE_DB_NAME;
 
     // API parameters.
-    apiUser?: string = process.env.FARODYNE_API_USER;
-    apiPassword?: string = process.env.FARODYNE_API_PASSWORD;
+    apiUser: string = process.env.FARODYNE_API_USER || '';
+    apiPassword: string = process.env.FARODYNE_API_PASSWORD || '';
     apiPort?: string = process.env.FARODYNE_API_PORT;
     apiRoot?: string = process.env.FARODYNE_API_ROOT || '/rest/v1';
     contentUrl?: string = process.env.FARODYNE_CONTENT_URL || 'https://www.farodyne.com/media';

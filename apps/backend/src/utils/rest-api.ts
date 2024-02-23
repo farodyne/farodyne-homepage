@@ -5,6 +5,7 @@ import cors from 'cors';
 import express from 'express';
 import requestIp from 'request-ip';
 import bodyParser from 'body-parser';
+import basicAuth from 'express-basic-auth';
 import { DatabaseClient, EnvironmentParameters } from '@/utils';
 
 export class RestApi {
@@ -18,11 +19,15 @@ export class RestApi {
     constructor(databaseClient: DatabaseClient, parameters: EnvironmentParameters) {
         this.databaseClient = databaseClient;
         this.parameters = parameters;
+
+        // Extract required environment parameters.
+        const { apiUser, apiPassword, apiRoot } = parameters;
+
+        // Register the middleware to use.
         this.api = express();
         this.api.use(cors());
         this.api.use(bodyParser.json());
-
-        const { apiRoot } = parameters;
+        this.api.use(basicAuth({ users: { [apiUser]: apiPassword } }));
 
         // Map API endpoints to local class methods.
         this.api.get(apiRoot + '/carousel-images/:count', this.getCarouselImages.bind(this));
