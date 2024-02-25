@@ -31,7 +31,7 @@
     @import '@/styles/vars.scss';
 
     .album-miniature-container {
-        border: 1px solid #666;
+        border: 1px solid $frame-color;
         border-radius: 1rem;
         margin: 0 3.6rem 4rem 3.6rem;
         overflow: hidden;
@@ -58,7 +58,7 @@
         }
 
         img {
-            filter: saturate(75%);
+            filter: saturate(85%);
             height: 140px;
             transition-duration: $transition-duration;
             width: 270px;

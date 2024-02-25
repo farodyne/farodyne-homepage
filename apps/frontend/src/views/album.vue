@@ -36,18 +36,15 @@
     <div v-if="album" class="album-container">
         <div class="content" :style="maxWidth">
             <h1>{{ album.caption }}</h1>
-            <!-- Render the album videos. -->
-            <!--
-        <div class="video" v-for="(video, i) in album.videos" :key="i">
-            
-            <img :src="`${contentBase}/backdrops/video.png`" />
 
-            <iframe :src="video.url" frameborder="0" allowfullscreen></iframe>
-        </div>
-                    -->
+            <!-- Render the album videos. -->
+            <div class="video" v-for="(video, i) in album.videos" :key="i">
+                <img src="https://farodyne.com/media/backdrops/video.png" />
+
+                <iframe :src="video.url" frameborder="0" allowfullscreen></iframe>
+            </div>
 
             <!-- Render the album images. -->
-
             <div class="image" v-for="(image, i) in album.images" :key="i" oncontextmenu="return false;">
                 <v-lazy-image :src="image.url" />
                 <div class="caption-container" :class="{ 'right-text': i % 2 === 1 }">
@@ -81,32 +78,33 @@
 
             .video,
             .image {
-                border: 2px solid #666;
+                border: 1px solid $frame-color;
+                border-radius: 0.7rem;
                 height: auto;
                 margin: 2rem 1rem 3rem 1rem;
+                overflow: hidden;
                 position: relative;
+
+                @include box-shadow(0 0 2.4rem 0 $shadow-color);
 
                 img {
                     width: 100%;
-                    @include box-shadow(0 0 2.4rem 0 $shadow-color);
                 }
             }
         }
 
-        /**
         .video {
             position: relative;
 
             iframe {
+                height: 100%;
+                left: 0;
                 position: absolute;
-                left: 2rem;
-                height: calc(100% - 5rem);
-                top: 2rem;
-                width: calc(100% - 4rem);
+                top: 0;
+                width: 100%;
                 z-index: 10;
             }
         }
-         */
 
         .caption-container {
             bottom: 0;
