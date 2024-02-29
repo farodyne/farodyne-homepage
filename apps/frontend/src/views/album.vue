@@ -102,7 +102,7 @@
                 position: absolute;
                 top: 0;
                 width: 100%;
-                z-index: 10;
+                z-index: 7;
             }
         }
 
@@ -111,13 +111,13 @@
             color: $primary-font-color;
             display: flex;
             font-family: $menu-font;
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             position: absolute;
             width: 100%;
 
             .caption {
                 background-color: rgba(0, 0, 0, 0.5);
-                padding: 0.2rem 1rem;
+                padding: 0.3rem 0.8rem;
             }
         }
 
