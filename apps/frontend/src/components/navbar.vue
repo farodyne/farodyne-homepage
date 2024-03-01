@@ -85,8 +85,9 @@
                 .logo {
                     color: $navbar-primary-color;
                     font-family: $handwriting-font;
-                    font-size: 5rem;
+                    font-size: 5.2rem;
                     margin-left: 3rem;
+                    user-select: none;
 
                     @media #{$mobile} {
                         display: none;
