@@ -5,7 +5,8 @@
     "main": "index.js",
     "scripts": {
         "build": "tsc",
-        "dev": "tsc-watch --onSuccess \"npx vite-node src/index.ts\""
+        "dev": "tsc-watch --onSuccess \"npx vite-node src/index.ts\"",
+        "run": "npx vite-node src/index.ts"
     },
     "keywords": [],
     "author": "",
