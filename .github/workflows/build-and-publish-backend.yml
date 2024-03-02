@@ -22,6 +22,6 @@ jobs:
           image: farodyne-backend
           tags: v1, latest
           registry: ghcr.io
-          dockerfile: Dockerfile
+          dockerfile: Dockerfile.backend
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
