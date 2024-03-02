@@ -1,5 +1,3 @@
 packages:
     - 'apps/**'
-    - 'packages/common/**'
-    # exclude packages that are inside test directories
-    - '!**/src/test/**'
+    - 'packages/**'

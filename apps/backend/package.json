@@ -2,11 +2,12 @@
     "name": "farodyne-backend",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
+    "main": "dist/index.js",
+    "type": "module",
     "scripts": {
         "build": "tsc",
         "dev": "tsc-watch --onSuccess \"npx vite-node src/index.ts\"",
-        "run": "npx vite-node src/index.ts"
+        "start": "npx vite-node src/index.ts"
     },
     "keywords": [],
     "author": "",
