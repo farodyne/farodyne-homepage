@@ -1,0 +1,32 @@
+version: '3.9'
+
+services:
+    database:
+        image: ghcr.io/farodyne/farodyne-database
+        container_name: database
+        pull_policy: always
+        restart: always
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: ${FARODYNE_DB_USERNAME}
+            MONGO_INITDB_ROOT_PASSWORD: ${FARODYNE_DB_PASSWORD}
+            FARODYNE_DB_HOST: ${FARODYNE_DB_HOST}
+            FARODYNE_DB_NAME: ${FARODYNE_DB_NAME}
+
+    backend:
+        image: ghcr.io/farodyne/farodyne-backend
+        container_name: backend
+        pull_policy: always
+        restart: always
+        ports:
+            - '4000:4000'
+        depends_on:
+            - database
+        environment:
+            - FARODYNE_DB_HOST
+            - FARODYNE_DB_PORT
+            - FARODYNE_DB_NAME
+            - FARODYNE_DB_USERNAME
+            - FARODYNE_DB_PASSWORD
+            - FARODYNE_API_USER
+            - FARODYNE_API_PASSWORD
+            - FARODYNE_API_PORT
