@@ -21,8 +21,8 @@ export class DatabaseClient {
      * Connects to the database.
      */
     connect(parameters: EnvironmentParameters) {
-        const { databaseUser, databasePassword, databasePort } = parameters;
-        const uri = `mongodb://${databaseUser}:${databasePassword}@localhost:${databasePort}`;
+        const { databaseUser, databasePassword, databaseHost, databasePort } = parameters;
+        const uri = `mongodb://${databaseUser}:${databasePassword}@${databaseHost}:${databasePort}`;
 
         try {
             this.client = new MongoClient(uri);
