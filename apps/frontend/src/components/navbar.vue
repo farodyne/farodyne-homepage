@@ -96,7 +96,6 @@
 
                 .links {
                     display: flex;
-                    margin-right: 3rem;
 
                     @media #{$mobile} {
                         width: 100%;
@@ -124,13 +123,13 @@
                         color: $navbar-primary-color;
                         font-family: $menu-font;
                         font-size: $navbar-font-size;
-                        margin-left: 2.4rem;
+                        margin: 0 1.4rem;
                         text-decoration: none;
                         transition-duration: $transition-duration;
 
                         @media #{$mobile} {
                             font-size: $navbar-font-size-mobile;
-                            margin-left: 1.6rem;
+                            margin: 0 1rem;
                         }
 
                         &:hover {
