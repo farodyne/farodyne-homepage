@@ -16,3 +16,6 @@ deps: ## Installs the project dependencies.
 
 dev: ## Runs the development environment.
 	pnpm run dev
+
+build: ## Build application for production.
+	pnpm run build
