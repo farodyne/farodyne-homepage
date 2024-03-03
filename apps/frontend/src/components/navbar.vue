@@ -128,6 +128,11 @@
                         text-decoration: none;
                         transition-duration: $transition-duration;
 
+                        @media #{$mobile} {
+                            font-size: $navbar-font-size-mobile;
+                            margin-left: 1.6rem;
+                        }
+
                         &:hover {
                             color: $navlink-hover-color;
                             @include blurry-text-shadow($navlink-color);

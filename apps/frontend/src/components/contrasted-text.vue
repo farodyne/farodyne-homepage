@@ -32,6 +32,11 @@
         font-size: 3rem;
         line-height: 3.2rem;
 
+        @media #{$mobile} {
+            font-size: 2.4rem;
+            line-height: 2.4rem;
+        }
+
         .text {
             background-color: $background-color;
             text-shadow: 1px 1px 3px black;
@@ -39,6 +44,10 @@
 
         .gradient {
             width: 7rem;
+
+            @media #{$mobile} {
+                width: 4rem;
+            }
         }
 
         .left {

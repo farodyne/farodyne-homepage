@@ -70,6 +70,11 @@
             font-weight: 100;
             margin: 2rem 0 0 0;
             text-align: center;
+
+            @media #{$mobile} {
+                font-size: 3rem;
+                margin: 0;
+            }
         }
 
         .content {
@@ -86,6 +91,10 @@
                 position: relative;
 
                 @include box-shadow(0 0 2.4rem 0 $shadow-color);
+
+                @media #{$mobile} {
+                    margin: 2rem 1rem;
+                }
 
                 img {
                     width: 100%;
@@ -114,6 +123,10 @@
             font-size: 1.4rem;
             position: absolute;
             width: 100%;
+
+            @media #{$mobile} {
+                font-size: 1.2rem;
+            }
 
             .caption {
                 background-color: rgba(0, 0, 0, 0.5);
