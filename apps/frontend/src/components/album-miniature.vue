@@ -47,7 +47,7 @@
             font-family: $menu-font;
             font-size: 1.6rem;
             font-weight: bold;
-            padding: 4px;
+            padding: 2px;
             position: absolute;
             text-align: center;
             width: 100%;
@@ -59,9 +59,9 @@
 
         img {
             filter: saturate(85%);
-            height: 140px;
+            height: 132px;
             transition-duration: $transition-duration;
-            width: 270px;
+            width: 320px;
 
             &:hover {
                 filter: saturate(100%);
