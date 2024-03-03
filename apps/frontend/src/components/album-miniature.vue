@@ -45,7 +45,7 @@
             bottom: 0;
             color: $primary-font-color;
             font-family: $menu-font;
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             font-weight: bold;
             padding: 2px;
             position: absolute;
