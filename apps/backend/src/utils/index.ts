@@ -1,6 +1,6 @@
 /**
  * Aggregate exports file.
  */
-export * from './database-client';
-export * from './environment-parameters';
-export * from './rest-api';
+export * from './database-client.js';
+export * from './environment-parameters.js';
+export * from './rest-api.js';

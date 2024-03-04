@@ -22,3 +22,7 @@ dev: ## Runs the development environment.
 .PHONY: run
 run: ## Runs the application.
 	pnpm run run
+
+.PHONY: build
+build: ## Build the application for production.
+	pnpm run build
