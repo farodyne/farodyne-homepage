@@ -5,6 +5,7 @@
     "main": "index.js",
     "scripts": {
         "build:common": "pnpm install && cd ./packages/common && pnpm run build",
+        "build:backend": "pnpm run build:common && cd ./apps/backend && pnpm install --frozen-lockfile && pnpm run build",
         "run:backend": "pnpm run build:common && cd ./apps/backend && pnpm install --frozen-lockfile && pnpm run start"
     },
     "keywords": [],

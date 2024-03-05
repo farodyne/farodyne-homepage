@@ -1,5 +1,8 @@
-# The Dockerfile used to create the image for our backend.
-FROM node:20-alpine
+FROM node:20-slim AS build
+
+# Set PNPM variables.
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
 
 # Set the working directory to use in the container.
 WORKDIR /app
@@ -7,17 +10,25 @@ WORKDIR /app
 # Copy the package.json file to first install the dependencies.
 COPY pnpm-lock.yaml package.json ./
 
-# But first install PNPM.
+# Make sure PNPM gets installed.
 RUN npm install -g pnpm
-
-# Install dependencies so that they get cached in a layer.
-RUN pnpm install
 
 # Copy the monorepo code.
 COPY . .
 
+# Install dependencies so that they get cached in a layer.
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
+
+# Build packages recursivelly.
+RUN pnpm run -r build
+
+# Start of a delivery stage.
+FROM node:20-slim AS backend
+
+# Just copy over the built files to the image.
+COPY --from=build /app /app
+
 # Expose the backend port.
 EXPOSE 4000
 
-# Start the backend server.
-CMD ["pnpm", "run:backend"]
+CMD ["node", "/app/apps/backend/dist/index.js"] 
