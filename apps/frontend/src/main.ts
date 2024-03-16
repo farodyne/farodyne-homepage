@@ -1,3 +1,6 @@
+/**
+ * The entry point for this Vue 3 application.
+ */
 import { createApp } from 'vue';
 import VLazyImage from 'v-lazy-image';
 import router from '@/router';

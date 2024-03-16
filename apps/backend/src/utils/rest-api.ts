@@ -1,5 +1,5 @@
 /**
- * Class that implements our backend REST API.
+ * Class that implements our backend REST API using Node Express.
  */
 import cors from 'cors';
 import express from 'express';

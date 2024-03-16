@@ -2,8 +2,8 @@
  * Database client class that implements our operations towards the database.
  */
 import { MongoClient } from 'mongodb';
-import { EnvironmentParameters } from './environment-parameters';
 import { Album, AlbumImage, AlbumMiniature, AlbumTypes } from 'farodyne-common';
+import { EnvironmentParameters } from './environment-parameters';
 
 export class DatabaseClient {
     client!: MongoClient;
