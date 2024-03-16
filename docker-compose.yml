@@ -18,7 +18,7 @@ services:
         pull_policy: always
         restart: always
         ports:
-            - '4000:4000'
+            - '${FARODYNE_API_PORT}:${FARODYNE_API_PORT}'
         depends_on:
             - database
         environment:
