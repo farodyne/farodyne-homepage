@@ -15,5 +15,5 @@ export class EnvironmentParameters {
     apiPassword: string = process.env.FARODYNE_API_PASSWORD || '';
     apiPort?: string = process.env.FARODYNE_API_PORT;
     apiRoot?: string = process.env.FARODYNE_API_ROOT || '/rest/v1';
-    contentUrl?: string = process.env.FARODYNE_CONTENT_URL || 'https://www.farodyne.com/media';
+    contentUrl?: string = process.env.FARODYNE_CONTENT_URL || 'https://farodyne.com/media';
 }
