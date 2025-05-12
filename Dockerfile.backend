@@ -11,7 +11,7 @@ WORKDIR /app
 COPY pnpm-lock.yaml package.json ./
 
 # Make sure PNPM gets installed.
-RUN npm install -g pnpm
+RUN npm install -g pnpm@8.5.1
 
 # Copy the monorepo code.
 COPY . .
