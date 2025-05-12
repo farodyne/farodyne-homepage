@@ -17,7 +17,8 @@ RUN npm install -g pnpm
 COPY . .
 
 # Install dependencies so that they get cached in a layer.
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
+#RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --force
 
 # Build packages recursivelly.
 RUN pnpm run -r build
